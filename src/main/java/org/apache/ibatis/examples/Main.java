@@ -25,15 +25,17 @@ public class Main {
     public static void main(String[] args) throws IOException {
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
+
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取Mapper
-        DemoMapper mapper = sqlSession.getMapper(DemoMapper.class);
+        DemoBeanMapper mapper = sqlSession.getMapper(DemoBeanMapper.class);
         Map<String, Object> map = new HashMap<>();
         map.put("id", "1");
-        log.info("select all : {}", mapper.selectAll(map));
-        sqlSession.commit();
+        log.info(mapper.selectById(map).toString());
+
+        // sqlSession.commit();
         sqlSession.close();
     }
 }

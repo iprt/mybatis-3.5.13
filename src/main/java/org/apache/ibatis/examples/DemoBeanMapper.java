@@ -8,7 +8,7 @@ import java.util.Map;
  * @author zhuzhenjie
  * @since 3/13/2023
  */
-public interface DemoMapper {
+public interface DemoBeanMapper {
 
     /**
      * Select all map.
@@ -16,5 +16,5 @@ public interface DemoMapper {
      * @param map the map
      * @return the map
      */
-    Map<String, Object> selectAll(Map<String, Object> map);
+    DemoBean selectById(Map<String, Object> map);
 }
