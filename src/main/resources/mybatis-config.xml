@@ -3,6 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!-- 顺序问题 -->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
     <!-- 和spring整合后 environments配置将废除 -->
     <environments default="development">
         <environment id="development">
@@ -24,4 +29,5 @@
         <!-- <package name=""> -->
         <mapper resource="mapper/DemoBeanMapper.xml"/>
     </mappers>
+
 </configuration>
