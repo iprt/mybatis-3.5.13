@@ -10,7 +10,7 @@ import java.lang.reflect.Proxy;
  * @author zhuzhenjie
  * @since 3/21/2023
  */
-public class Main {
+public class ProxyMain {
     public static void main(String[] args) {
         // testStatic();
         testDynamic();

@@ -1,11 +1,11 @@
-package org.iproute.examples.demo;
+package org.iproute.examples;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.iproute.examples.demo.DemoBeanMapper;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,16 +13,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Main
+ * MybatisTest
  *
- * @author zhuzhenjie
- * @since 3/13/2023
+ * @author tech@intellij.io
+ * @since 2025-01-15
  */
-public class Main {
+public class MybatisTest {
 
-    private static final Logger log = LoggerFactory.getLogger(Main.class);
+    @Test
+    public void testDemo() throws IOException {
 
-    public static void main(String[] args) throws IOException {
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
 
@@ -33,9 +33,12 @@ public class Main {
         DemoBeanMapper mapper = sqlSession.getMapper(DemoBeanMapper.class);
         Map<String, Object> map = new HashMap<>();
         map.put("id", "1");
-        log.info(mapper.selectById(map).toString());
+
+        System.out.println(mapper.selectById(map).toString());
 
         // sqlSession.commit();
         sqlSession.close();
+
     }
+
 }
