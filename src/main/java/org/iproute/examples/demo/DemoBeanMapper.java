@@ -1,5 +1,6 @@
 package org.iproute.examples.demo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,4 +18,11 @@ public interface DemoBeanMapper {
      * @return the map
      */
     DemoBean selectById(Map<String, Object> map);
+
+    /**
+     * Select all list.
+     *
+     * @return the list
+     */
+    List<DemoBean> selectAll();
 }

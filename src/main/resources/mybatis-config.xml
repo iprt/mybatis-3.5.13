@@ -28,6 +28,7 @@
     <mappers>
         <!-- <package name=""> -->
         <mapper resource="mapper/DemoBeanMapper.xml"/>
+
     </mappers>
 
 </configuration>
