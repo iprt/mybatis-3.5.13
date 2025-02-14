@@ -81,6 +81,7 @@ import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeAliasRegistry;
 import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
+import org.iproute.logfunc.SrcLog;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -594,6 +595,8 @@ public class Configuration {
         } else {
             executor = new SimpleExecutor(this, transaction);
         }
+        SrcLog.get().addNode(this, "newExecutor", "Transaction", "ExecutorType")
+                .tips("对于 Mybatis 开启了二级缓存，会在 Executor 外层包装一层 CachingExecutor");
         if (cacheEnabled) {
             executor = new CachingExecutor(executor);
         }

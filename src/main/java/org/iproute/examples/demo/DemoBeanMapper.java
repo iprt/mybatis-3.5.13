@@ -29,10 +29,28 @@ public interface DemoBeanMapper {
     List<DemoBean> selectAll();
 
 
+    /**
+     * Inserts a new record into the database based on the provided DemoBean object.
+     *
+     * @param demoBean the DemoBean object containing the data to be inserted
+     * @return the number of rows affected by the insert operation
+     */
     int insert(DemoBean demoBean);
 
+    /**
+     * Updates an existing record in the database based on the provided DemoBean object.
+     *
+     * @param demoBean the DemoBean object containing the data to be updated
+     * @return the number of rows affected by the update operation
+     */
     int update(DemoBean demoBean);
 
+    /**
+     * Deletes a record from the database based on the provided id.
+     *
+     * @param id the unique identifier of the record to be deleted
+     * @return the number of rows affected by the delete operation
+     */
     int delete(@Param("id") Long id);
 
 }

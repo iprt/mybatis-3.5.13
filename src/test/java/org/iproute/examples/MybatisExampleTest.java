@@ -28,7 +28,7 @@ import java.util.UUID;
 public class MybatisExampleTest {
 
     @Test
-    public void testDemo() throws IOException {
+    public void testSelect() throws IOException {
         SrcLog.get().addGroup("create sqlSessionFactory");
 
         String resource = "mybatis-config.xml";
