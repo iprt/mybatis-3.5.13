@@ -28,4 +28,21 @@
         from demo
     </select>
 
+    <insert id="insert" parameterType="org.iproute.examples.demo.DemoBean">
+        insert into demo (name)
+        values (#{name})
+    </insert>
+
+    <insert id="update" parameterType="org.iproute.examples.demo.DemoBean">
+        update demo
+        set name = #{name}
+        where id = #{id}
+    </insert>
+
+    <delete id="delete" parameterType="Map">
+        delete
+        from demo
+        where id = #{id}
+    </delete>
+
 </mapper>

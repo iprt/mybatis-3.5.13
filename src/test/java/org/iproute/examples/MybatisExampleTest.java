@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.TransactionFactory;
+import org.iproute.examples.demo.DemoBean;
 import org.iproute.examples.demo.DemoBeanMapper;
 import org.iproute.logfunc.SrcLog;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * MybatisExampleTest
@@ -47,6 +49,77 @@ public class MybatisExampleTest {
         System.out.println(mapper.selectById(map).toString());
 
         // sqlSession.commit();
+        sqlSession.close();
+
+        SrcLog.get().printLog();
+    }
+
+
+    @Test
+    public void testInsert() throws IOException {
+        SrcLog.get().addGroup("create sqlSessionFactory");
+
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+
+        SrcLog.get().addGroup("sqlSessionFactory.openSession()");
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        SrcLog.get().addGroup("sqlSession.getMapper()");
+        DemoBeanMapper mapper = sqlSession.getMapper(DemoBeanMapper.class);
+
+        System.out.println(mapper.insert(DemoBean.builder().name(UUID.randomUUID().toString()).build()));
+
+        sqlSession.commit();
+        sqlSession.close();
+
+        SrcLog.get().printLog();
+    }
+
+
+    @Test
+    public void testUpdate() throws IOException {
+        SrcLog.get().addGroup("create sqlSessionFactory");
+
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+
+        SrcLog.get().addGroup("sqlSessionFactory.openSession()");
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        SrcLog.get().addGroup("sqlSession.getMapper()");
+        DemoBeanMapper mapper = sqlSession.getMapper(DemoBeanMapper.class);
+
+        System.out.println(mapper.update(DemoBean.builder().id(3L).name("update_" + UUID.randomUUID().toString().substring(0, 8)).build()));
+
+        sqlSession.commit();
+        sqlSession.close();
+
+        SrcLog.get().printLog();
+    }
+
+    @Test
+    public void testDelete() throws IOException {
+        SrcLog.get().addGroup("create sqlSessionFactory");
+
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+
+        SrcLog.get().addGroup("sqlSessionFactory.openSession()");
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        SrcLog.get().addGroup("sqlSession.getMapper()");
+        DemoBeanMapper mapper = sqlSession.getMapper(DemoBeanMapper.class);
+
+        System.out.println(mapper.delete(1000L));
+
+        sqlSession.commit();
         sqlSession.close();
 
         SrcLog.get().printLog();

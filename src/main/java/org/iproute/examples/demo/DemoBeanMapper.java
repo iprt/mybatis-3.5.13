@@ -1,5 +1,7 @@
 package org.iproute.examples.demo;
 
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
 
@@ -25,4 +27,12 @@ public interface DemoBeanMapper {
      * @return the list
      */
     List<DemoBean> selectAll();
+
+
+    int insert(DemoBean demoBean);
+
+    int update(DemoBean demoBean);
+
+    int delete(@Param("id") Long id);
+
 }
